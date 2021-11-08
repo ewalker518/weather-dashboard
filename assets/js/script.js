@@ -1,14 +1,14 @@
-const APIkey = "2dd6bab44b791b6c4d9157ffee0e930b";
+let APIKey = "2dd6bab44b791b6c4d9157ffee0e930b";
 const cityNameEl = document.getElementById("current-city")
 const currentTempEl = document.getElementById("temp");
 const currentWindEl = document.getElementById("wind");
 const currentHumidityEl = document.getElementById("humidity");
 const currentUVEl = document.getElementById("uv-index");
+const searchEl = document.getElementById("search-button")
 
 var getCurrentWeather = () => {
-    let city = $('#city-search').val();
-    currentCity = $('#city-search').val();
-    let apiURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
+    let currentCity = $('#city-search').val();
+    let apiURL = "https://api.openweathermap.org/data/2.5/weather?q=" + currentCity + "&appid=" + APIKey;
 
     axios.get(apiURL) // https://axios-http.com/docs/intro
     .then((response) => {
@@ -22,22 +22,39 @@ var getCurrentWeather = () => {
         currentHumidityEl.innerHTML = "Humidity: " + response.data.main.humidity + "%";
         let lat = response.data.coord.lat;
         let lon = response.data.coord.lon;
-        let uvQueryURL = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&cnt=1";
-        fetch(uvQueryURL)
-        .then((response) => {
-            return response.json();
-        })
-        .then((response) => {
-            let uvIndex = response.value;
-            $('#uvIndex').html(`UV Index: <span id="uvVal"> ${uvIndex}</span>`);
-            if (uvIndex>=0 && uvIndex<3){
-                $('#uvVal').attr("class", "uv-favorable");
-            } else if (uvIndex>=3 && uvIndex<8){
-                $('#uvVal').attr("class", "uv-moderate");
-            } else if (uvIndex>=8){
-                $('#uvVal').attr("class", "uv-severe");
-            }
-        });
+        let UVQueryURL = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&cnt=1";
+        axios.get(UVQueryURL)
+        .then(function(response){
+            console.log(response);
+            let UVIndex = document.createElement("span");
+            UVIndex.setAttribute("class","uv-index")
+            UVIndex.innerHTML = response.data[0].value;
+            currentUVEl.innerHTML = "UV Index: ";
+            currentUVEl.append(UVIndex);
 
+            // if (uvIndex>=0 && uvIndex<3){
+            //     $('#uvVal').attr("class", "uv-favorable");
+            // } else if (uvIndex>=3 && uvIndex<8){
+            //     $('#uvVal').attr("class", "uv-moderate");
+            // } else if (uvIndex>=8){
+            //     $('#uvVal').attr("class", "uv-severe");
+            // }
+        });
     })
+}
+
+// 5-day forecast
+var fiveDayForecast = () => {
+    // display a five-day forecast
+}
+
+$('#search-button').on("click", (event) => {
+    event.preventDefault();
+    currentCity = $('#city-search').val();
+    getCurrentWeather(event);
+    fiveDayForecast();
+})
+
+function k2f(K) {
+    return Math.floor((K - 273.15) *1.8 +32);
 }
