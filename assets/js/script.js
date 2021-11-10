@@ -5,8 +5,12 @@ const currentWindEl = document.getElementById("wind");
 const currentHumidityEl = document.getElementById("humidity");
 const currentUVEl = document.getElementById("uv-index");
 const searchEl = document.getElementById("search-button");
-let currentCity = $('#city-search').val();
+// let currentCity = $('#city-search').val();
 var forecastContainerEl = document.querySelector("#forecast-container");
+var recentSearch = document.querySelector("#recent-city");
+var recentSearchButton = document.querySelector(".recent-search-btn");
+let searchHistory = JSON.parse(localStorage.getItem("search-history")) || [];
+var recentSearchButtonEl = document.querySelector("#past-search-button");
 
 var getCurrentWeather = () => {
     let apiURL = "https://api.openweathermap.org/data/2.5/weather?q=" + currentCity + "&appid=" + APIKey;
@@ -40,6 +44,8 @@ var getCurrentWeather = () => {
             //     $('#uvVal').attr("class", "uv-severe");
             // }
         });
+        saveCity();
+        recentSearch(currentCity);
     })
 }
 
@@ -62,7 +68,6 @@ var displayForecast = function(weather) {
         var dailyForecast = forecast[i];
         var forecastEl = document.createElement("div");
         forecastEl.classList = "card";
-        console.log(dailyForecast);
 
         var weatherIcon = document.createElement("img");
         weatherIcon.classList = "card-body";
@@ -83,14 +88,38 @@ var displayForecast = function(weather) {
     }
 }
 
+function saveCity(cities) {
+    localStorage.setItem("Cities", JSON.stringify(cities));    
+}
+
+function k2f(K) {
+    return Math.floor((K - 273.15) *1.8 +32);
+}
+
+var recentSearch = function(recentSearch){
+    console.log("hello");
+    recentSearchEl = document.createElement("button");
+    recentSearchEl.textContent = recentSearch;
+    recentSearchEl.classList = "btn-light";
+    recentSearchEl.setAttribute("recent-city", recentSearch)
+    recentSearchEl.setAttribute("type", "submit");
+    console.log(recentSearch);
+    recentSearchButtonEl.prepend(recentSearchEl);
+}
+
+var recentSearchHandler = function(event){
+    var city = event.target.getAttribute("recent-city")
+    if(city){
+        getCurrentWeather(city);
+        fiveDayForecast(city);
+    }
+}
+
 $('#search-button').on("click", (event) => {
     event.preventDefault();
     currentCity = $('#city-search').val();
     getCurrentWeather(event);
     fiveDayForecast();
-    displayForecast();
+    searchHistory.push(currentCity);
+    localStorage.setItem("search-history",JSON.stringify(searchHistory));
 })
-
-function k2f(K) {
-    return Math.floor((K - 273.15) *1.8 +32);
-}
