@@ -68,7 +68,7 @@ var displayForecast = function (weather) {
     for (let i = 5; i < forecast.length; i = i + 8) {
         var dailyForecast = forecast[i];
         var forecastEl = document.createElement("div");
-        forecastEl.classList = "day bg-primary col card mr-2";
+        forecastEl.classList = "day card bg-primary col-sm-2 ";
 
         var forecastDateEl = document.createElement("div");
         var forecastDate = new Date(weather.dt * 1000);
@@ -79,16 +79,22 @@ var displayForecast = function (weather) {
         forecastDateEl.append(forecastDate);
 
         var weatherIcon = document.createElement("img");
-        weatherIcon.classList = "card bg-primary";
+        weatherIcon.classList = "img";
         weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);
         forecastEl.appendChild(weatherIcon);
 
         var forecastTempEl = document.createElement("div");
+        forecastTempEl.classList=("card-body");
         forecastTempEl.textContent = "Temp: " + dailyForecast.main.temp + " °F";
         forecastEl.appendChild(forecastTempEl);
 
+        // var forecastWindEl = document.createElement("div");
+        // forecastWindEl.classList=("card-body");
+        // forecastWindEl.textContent = "Wind: " + dailyForecast.main.wind.speed + " mph";
+        // forecastEl.appendChild(forecastWindEl);
+
         var forecastHumidityEl = document.createElement("div");
-        forecastHumidityEl.classList = "card";
+        forecastHumidityEl.classList=("card-body")
         forecastHumidityEl.textContent = "Humidity: " + dailyForecast.main.humidity + "%";
         forecastEl.appendChild(forecastHumidityEl);
 

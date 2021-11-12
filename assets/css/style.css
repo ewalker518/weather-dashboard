@@ -77,11 +77,20 @@ li {
     color: white;
 }
 
+.forecast-container {
+    display: inline-block;
+}
+
 .day {
     border-style: solid;
     border-color: #3D3D3D;
     border-width: 2px;
-    width: 175px;
-    height: 300px;
-    
+}
+
+.card {
+    margin: auto;
+}
+
+.card-body {
+    color: white;
 }
