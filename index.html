@@ -17,44 +17,41 @@
     <nav>
         <h1>Weather Dashboard</h1>
     </nav>
-    <div class="container">
-        <div class="row">
-            <div class="col-4">
-                <p class="search">Search</p>
-                <div class="input">
-                    <input id="city-search" type="text" class="city" placeholder="City Name">
-                    <div>
-                        <button id="search-button">Search</button>
-                    </div>
+    <main class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-2 search-column bg-light">
+            <p class="search">Search for a city</p>
+            <div class="input p-2 border">
+                <input id="city-search" type="text" class="city form-input" placeholder="City Name">
+                <div class="search-btn">
+                    <button id="search-button" class="btn btn-primary">Search</button>
                 </div>
-                <div class="row">
-                </div>
-                <div id="past-search-button" class="row"></div>
             </div>
+            
+            <div id="past-search-button" class="row"></div>
         </div>
-        <div class="row">
+
+        <div class="col-12 col-md-10">
+            <div class="row">
+                <div class="col-8">
+                    <p id="current-city" class="current-city"></p>
+                </div>
+            </div>
+            <ul id="conditions">
+                <li id="temp">Temp:</li>
+                <li id="wind">Wind Speed:</li>
+                <li id="humidity">Humidity:</li>
+                <li id="uv-index">UV Index:</li>
+            </ul>
             <div class="col-8">
                 <div class="row">
-                    <div class="col-8">
-                        <p id="current-city" class="current-city"></p>
-                    </div>
+                    <h3>5-Day Forecast</h3>
                 </div>
-                <ul id="conditions">
-                    <li id="temp">Temp:</li>
-                    <li id="wind">Wind Speed:</li>
-                    <li id="humidity">Humidity:</li>
-                    <li id="uv-index">UV Index:</li>
-                </ul>
-                <div class="col-8">
-                    <div class="row">
-                        <h3>5-Day Forecast</h3>
-                    </div>
-                    <div id="forecast-container" class="flex"></div>
-                </div>
+                <div id="forecast-container" class="flex"></div>
             </div>
         </div>
     </div>
-
+    </main>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"

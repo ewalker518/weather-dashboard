@@ -1,3 +1,32 @@
+nav {
+    background-color: #3D3D3D;
+    padding: 25px;
+    color: white;
+    text-align: center;
+}
+
+.search-column {
+    background-color: #E8E8E8;
+    margin: auto;
+    padding-bottom: 500px;
+}
+
+.search {
+    font-size: 2rem;
+    margin-bottom: 0;
+    color: black;
+    font-weight: 800;
+}
+
+.search-btn {
+    padding: 5px;
+}
+
+.recent-search-btn {
+    padding: 5px;
+    margin: 5px;
+}
+
 .uv-favorable{
     background-color: green;
     border-radius: 5px;
