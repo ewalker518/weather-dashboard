@@ -37,6 +37,7 @@ var getCurrentWeather = () => {
                     currentUVEl.innerHTML = "UV Index: ";
                     currentUVEl.append(UVIndex);
 
+                    // change color for uv index based on conditions
                     // if (uvIndex>=0 && uvIndex<3){
                     //     $('#uvVal').attr("class", "uv-favorable");
                     // } else if (uvIndex>=3 && uvIndex<8){
@@ -88,6 +89,7 @@ var displayForecast = function (weather) {
         forecastTempEl.textContent = "Temp: " + dailyForecast.main.temp + " °F";
         forecastEl.appendChild(forecastTempEl);
 
+        // add wind speed to forecast card
         // var forecastWindEl = document.createElement("div");
         // forecastWindEl.classList=("card-body");
         // forecastWindEl.textContent = "Wind: " + dailyForecast.main.wind.speed + " mph";
