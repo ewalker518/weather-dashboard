@@ -4,11 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Weather Dashboard</title>
 </head>
@@ -18,39 +16,40 @@
         <h1>Weather Dashboard</h1>
     </nav>
     <main class="container-fluid">
-    <div class="row">
-        <div class="col-12 col-md-2 search-column bg-light">
-            <p class="search">Search for a city</p>
-            <div class="input p-2 border">
-                <input id="city-search" type="text" class="city form-input" placeholder="City Name">
-                <div class="search-btn">
-                    <button id="search-button" class="btn btn-primary">Search</button>
+        <div class="row">
+            <div class="col-12 col-md-2 search-column bg-light">
+                <p class="search">Search for a city</p>
+                <div class="input p-2 border">
+                    <input id="city-search" type="text" class="city form-input" placeholder="City Name">
+                    <div class="search-btn">
+                        <button id="search-button" class="btn btn-primary">Search</button>
+                    </div>
                 </div>
-            </div>
-            
-            <div id="past-search-button" class="row"></div>
-        </div>
 
-        <div class="col-12 col-md-10">
-            <div class="row">
-                <div class="col-8">
-                    <p id="current-city" class="current-city"></p>
-                </div>
+                <div id="past-search-button" class="row search-history p-2"></div>
             </div>
-            <ul id="conditions">
-                <li id="temp">Temp:</li>
-                <li id="wind">Wind Speed:</li>
-                <li id="humidity">Humidity:</li>
-                <li id="uv-index">UV Index:</li>
-            </ul>
-            <div class="col-8">
-                <div class="row">
-                    <h3>5-Day Forecast</h3>
+
+            <div class="col-12 col-md-10">
+                <div class="current-conditions card">
+                    <div class="col-8 card-body">
+                        <p id="current-city" class="current-city card-title"></p>
+                        <ul id="conditions" class="conditions list-unstyled">
+                            <li id="temp">Temp:</li>
+                            <li id="wind">Wind Speed:</li>
+                            <li id="humidity">Humidity:</li>
+                            <li id="uv-index">UV Index:</li>
+                        </ul>
+                    </div>
+                    
                 </div>
-                <div id="forecast-container" class="flex"></div>
+                <div class="col-8">
+                    <div class="row">
+                        <h3>5-Day Forecast</h3>
+                    </div>
+                    <div id="forecast-container" class="forecast-card"></div>
+                </div>
             </div>
         </div>
-    </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"

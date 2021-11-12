@@ -22,6 +22,7 @@ var getCurrentWeather = () => {
             const month = currentDate.getMonth();
             const year = currentDate.getFullYear();
             cityNameEl.innerHTML = response.data.name + " " + month + '/' + day + '/' + year;
+            cityNameEl.setAttribute("class", "card-title")
             currentTempEl.innerHTML = "Temperature: " + k2f(response.data.main.temp) + " °F";
             currentWindEl.innerHTML = "Wind Speed: " + response.data.wind.speed + " MPH";
             currentHumidityEl.innerHTML = "Humidity: " + response.data.main.humidity + "%";
@@ -67,9 +68,9 @@ var displayForecast = function (weather) {
     for (let i = 5; i < forecast.length; i = i + 8) {
         var dailyForecast = forecast[i];
         var forecastEl = document.createElement("div");
-        forecastEl.classList = "card five-day-forecast";
+        forecastEl.classList = "day bg-primary col card mr-2";
 
-        var forecastDateEl = document.createElement("span");
+        var forecastDateEl = document.createElement("div");
         var forecastDate = new Date(weather.dt * 1000);
         var forecastMonth = forecastDate.getMonth() + 1;
         var forecastDay = forecastDate.getDate();
@@ -78,18 +79,17 @@ var displayForecast = function (weather) {
         forecastDateEl.append(forecastDate);
 
         var weatherIcon = document.createElement("img");
-        weatherIcon.classList = "card-body";
+        weatherIcon.classList = "card bg-primary";
         weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);
         forecastEl.appendChild(weatherIcon);
 
-        var forecastTempEl = document.createElement("span");
-        forecastEl.classList = "card-body";
-        forecastTempEl.textContent = dailyForecast.main.temp + " °F";
+        var forecastTempEl = document.createElement("div");
+        forecastTempEl.textContent = "Temp: " + dailyForecast.main.temp + " °F";
         forecastEl.appendChild(forecastTempEl);
 
-        var forecastHumidityEl = document.createElement("span");
-        forecastHumidityEl.classList = "card-body";
-        forecastHumidityEl.textContent = dailyForecast.main.humidity + "%";
+        var forecastHumidityEl = document.createElement("div");
+        forecastHumidityEl.classList = "card";
+        forecastHumidityEl.textContent = "Humidity: " + dailyForecast.main.humidity + "%";
         forecastEl.appendChild(forecastHumidityEl);
 
         forecastContainerEl.appendChild(forecastEl)
@@ -107,7 +107,7 @@ function k2f(K) {
 var recentSearch = function (recentSearch) {
     recentSearchEl = document.createElement("button");
     recentSearchEl.textContent = recentSearch;
-    recentSearchEl.classList = "btn btn-primary recent-search-btn";
+    recentSearchEl.classList = "btn btn-secondary";
     recentSearchEl.setAttribute("recent-city", recentSearch)
     recentSearchEl.setAttribute("type", "submit");
     recentSearchButtonEl.prepend(recentSearchEl);
